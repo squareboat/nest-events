@@ -1,8 +1,12 @@
-import { DynamicModule, Module } from "@nestjs/common";
+import { DynamicModule, Global, Module } from "@nestjs/common";
 import { DiscoveryModule } from "@nestjs/core";
 import { EventExplorer } from "./explorer";
 
-@Module({})
+@Global()
+@Module({
+  imports: [DiscoveryModule],
+  providers: [EventExplorer],
+})
 export class EventModule {
   /**
    * Register options
