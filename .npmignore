@@ -8,7 +8,6 @@ tsconfig.json
 .prettierrc
 
 # github
-cover.png
 .github
 CONTRIBUTING.md
 CODE_OF_CONDUCT.md
