@@ -17,7 +17,7 @@
 To read the complete documentation, [click here](https://opensource.squareboat.com/nest-events/).
 
 ## Contributing
-To know about contributing to this boilerplate, read the guidelines [here](./CONTRIBUTING.MD)
+To know about contributing to this package, read the guidelines [here](./CONTRIBUTING.md)
 
 
 ## About Us
