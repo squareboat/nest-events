@@ -33,7 +33,10 @@ export function isEmpty(value: any): boolean {
   return false;
 }
 
-export async function EmitEvent(event: EmitsEvent, data: any): Promise<void> {
+export async function EmitEvent<T>(
+  event: EmitsEvent<T>,
+  data: T
+): Promise<void> {
   await event.emit(data);
   return;
 }
