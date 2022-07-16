@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { DiscoveryService, MetadataScanner } from "@nestjs/core";
-import { EVENT_NAME } from "./constants";
+import { SquareboatNestEventConstants } from "./constants";
 import { EventMetadata } from "./metadata";
 
 @Injectable()
@@ -29,11 +29,19 @@ export class EventExplorer {
     });
   }
 
-  lookupListeners(instance: Record<string, Function>, key: string) {
+  lookupListeners(instance: Record<string, any>, key: string) {
     const methodRef = instance[key];
-    const hasEventMeta = Reflect.hasMetadata(EVENT_NAME, instance, key);
+    const hasEventMeta = Reflect.hasMetadata(
+      SquareboatNestEventConstants.eventName,
+      instance,
+      key
+    );
     if (!hasEventMeta) return;
-    const eventName = Reflect.getMetadata(EVENT_NAME, instance, key);
+    const eventName = Reflect.getMetadata(
+      SquareboatNestEventConstants.eventName,
+      instance,
+      key
+    );
     EventMetadata.addListener(eventName, methodRef.bind(instance));
   }
 }

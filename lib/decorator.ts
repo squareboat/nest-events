@@ -1,18 +1,29 @@
-import 'reflect-metadata';
-import { EVENT_EMITTER_NAME, EVENT_NAME } from './constants';
+import "reflect-metadata";
+import { SquareboatNestEventConstants } from "./constants";
+import { GenericClass } from "./interfaces";
 
-export function Event(name: string) {
-  return function (target: Function) {
-    Reflect.defineMetadata(EVENT_EMITTER_NAME, name, target);
+export function Event(name?: string) {
+  return function (target: GenericClass) {
+    Reflect.defineMetadata(
+      SquareboatNestEventConstants.eventEmitterName,
+      name || target["name"],
+      target
+    );
   };
 }
 
-export function ListensTo(event: string) {
+export function ListensTo(event: string | GenericClass) {
+  const eventName = typeof event === "string" ? event : event["name"];
   return function (
     target: Record<string, any>,
     propertyKey: string,
-    descriptor: PropertyDescriptor,
+    descriptor: PropertyDescriptor
   ) {
-    Reflect.defineMetadata(EVENT_NAME, event, target, propertyKey);
+    Reflect.defineMetadata(
+      SquareboatNestEventConstants.eventName,
+      eventName,
+      target,
+      propertyKey
+    );
   };
 }

@@ -1,13 +1,15 @@
+import { GenericFunction } from "./interfaces";
+
 export class EventMetadata {
   private static store: Record<string, any> = { events: {}, listeners: {} };
 
-  static addListener(event: string, target: Function): void {
+  static addListener(event: string, target: () => void): void {
     const listeners = EventMetadata.store.listeners[event] || [];
     listeners.push(target);
     EventMetadata.store.listeners[event] = listeners;
   }
 
-  static getListeners(event: string): Function[] {
+  static getListeners(event: string): Array<GenericFunction> {
     const listeners = EventMetadata.store.listeners[event];
     return listeners || [];
   }
