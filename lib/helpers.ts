@@ -61,7 +61,7 @@ export class Package {
       return require(pkgName);
     } catch (e) {
       console.error(
-        ` ${pkgName} is missing. Please make sure that you have installed the package first `
+        ` ${pkgName} is missing. Please make sure that you have installed and configured the package first`
       );
       process.exitCode = 1;
       process.exit();
