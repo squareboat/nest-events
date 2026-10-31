@@ -54,7 +54,7 @@ export class UserListeners {
 }
 ```
 
-Emit it. `emit()` resolves after every listener has finished.
+Emit it. `emit()` runs the listeners at the same time and resolves when all of them have finished. If a listener throws or rejects, `emit()` rejects right away, without waiting for the others.
 
 ```typescript
 await new UserSignedUp("ann@example.com").emit();
