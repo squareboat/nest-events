@@ -21,11 +21,10 @@ export class EventExplorer {
       ) {
         return;
       }
-      this.metadataScanner.scanFromPrototype(
-        instance,
-        Object.getPrototypeOf(instance),
-        (key: string) => this.lookupListeners(instance, key)
-      );
+      // getAllMethodNames replaces scanFromPrototype, which is deprecated since Nest 10
+      for (const key of this.metadataScanner.getAllMethodNames(Object.getPrototypeOf(instance))) {
+        this.lookupListeners(instance, key);
+      }
     });
   }
 
